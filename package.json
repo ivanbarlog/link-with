@@ -1,0 +1,54 @@
+{
+  "name": "link-with",
+  "description": "Links the local package and install its dependencies.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/deftomat/link-with",
+  "license": "MIT",
+  "keywords": [
+    "link",
+    "dependencies",
+    "sync",
+    "transitive"
+  ],
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "author": "Tomas Szabo <tomas.szabo@deftomat.com>",
+  "bin": {
+    "link-with": "./build/src/cli.js"
+  },
+  "scripts": {
+    "link-with": "node ./dist/src/cli.js",
+    "watch": "tsc --watch",
+    "prepublishOnly": "rm -rf ./dist && tsc && chmod +x ./dist/src/cli.js"
+  },
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "prettier": "@deftomat/opinionated/prettier.config.js",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "chokidar": "^3.1.1",
+    "commander": "^3.0.1",
+    "execa": "^2.0.4",
+    "find-up": "^4.1.0",
+    "fs-extra": "^8.1.0",
+    "ora": "^3.0.0",
+    "ramda": "^0.26.1",
+    "validate-npm-package-name": "^3.0.0"
+  },
+  "devDependencies": {
+    "@deftomat/opinionated": "0.4.6",
+    "@types/node": "^12.7.5",
+    "@types/ramda": "^0.26.22",
+    "@types/validate-npm-package-name": "^3.0.0",
+    "prettier": "1.18.2",
+    "typescript": "^3.6.3"
+  }
+}
