@@ -1,7 +1,7 @@
 {
   "name": "link-with",
   "description": "Links the local package and install its dependencies.",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "homepage": "https://github.com/deftomat/link-with",
   "license": "MIT",
   "keywords": [
@@ -19,7 +19,7 @@
   },
   "author": "Tomas Szabo <tomas.szabo@deftomat.com>",
   "bin": {
-    "link-with": "./build/src/cli.js"
+    "link-with": "./dist/src/cli.js"
   },
   "scripts": {
     "link-with": "node ./dist/src/cli.js",

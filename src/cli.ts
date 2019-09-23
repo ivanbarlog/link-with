@@ -32,13 +32,6 @@ program
     }
   });
 
-program.on('command:*', function() {
-  console.error(
-    red('Invalid command: %s\nSee --help for a list of available commands.'),
-    program.args.join(' ')
-  );
-});
-
 program.parse(process.argv);
 if (program.args.length === 0) program.outputHelp();
 
