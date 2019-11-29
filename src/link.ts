@@ -6,6 +6,7 @@ import ora from 'ora';
 import path from 'path';
 import { mergeDeepRight } from 'ramda';
 import { cleanups } from './cleanup';
+import { printCompilationWarning } from './helpers';
 import { Package, resolvePackage } from './package';
 import { Project, resolveProject } from './project';
 import { markAsLinked } from './state';
@@ -167,6 +168,7 @@ function createSyncer(packages: Package[], project: Project) {
 
       markAsLinked(packages, project);
       console.info('🚧  Keeping packages in sync...');
+      printCompilationWarning();
     },
     stop() {
       watchers.forEach(watcher => watcher.close());
