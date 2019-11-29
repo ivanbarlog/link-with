@@ -17,6 +17,9 @@
   "engines": {
     "node": ">=10.0.0"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "author": "Tomas Szabo <tomas.szabo@deftomat.com>",
   "bin": {
     "link-with": "./dist/src/cli.js"
