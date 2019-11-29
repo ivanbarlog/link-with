@@ -1,9 +1,7 @@
-import chalk from 'chalk';
+import { bold } from 'chalk';
 import { existsSync } from 'fs';
 import validatePackageName from 'validate-npm-package-name';
 import { Spec, toSpecConnector } from './spec';
-
-const { bold } = chalk;
 
 export interface Package {
   readonly name: string;

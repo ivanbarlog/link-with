@@ -33,7 +33,7 @@
   ],
   "prettier": "@deftomat/opinionated/prettier.config.js",
   "dependencies": {
-    "chalk": "^2.4.2",
+    "chalk": "^3.0.0",
     "chokidar": "^3.1.1",
     "commander": "^3.0.1",
     "execa": "^2.0.4",
@@ -44,11 +44,11 @@
     "validate-npm-package-name": "^3.0.0"
   },
   "devDependencies": {
-    "@deftomat/opinionated": "0.4.6",
+    "@deftomat/opinionated": "0.4.7",
     "@types/node": "^12.7.5",
     "@types/ramda": "^0.26.22",
     "@types/validate-npm-package-name": "^3.0.0",
-    "prettier": "1.18.2",
+    "prettier": "1.19.1",
     "typescript": "^3.6.3"
   }
 }

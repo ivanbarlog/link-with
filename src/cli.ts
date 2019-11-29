@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 
-import chalk from 'chalk';
+import { bold, yellow } from 'chalk';
 import program from 'commander';
 import path from 'path';
 import { cleanups } from './cleanup';
 import { link } from './link';
 
-const { bold, yellow, red } = chalk;
 const version = require(`${__dirname}/../../package.json`).version;
 
 program.version(version).description('Links a local package into your project.');

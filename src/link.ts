@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import { bold, cyan, yellow } from 'chalk';
 import chokidar, { FSWatcher } from 'chokidar';
 import execa, { ExecaChildProcess } from 'execa';
 import fsExtra from 'fs-extra';
@@ -9,8 +9,6 @@ import { cleanups } from './cleanup';
 import { Package, resolvePackage } from './package';
 import { Project, resolveProject } from './project';
 import { markAsLinked } from './state';
-
-const { bold, cyan, yellow } = chalk;
 
 export async function link(packagePaths: string[], cwd: string) {
   let firstInstallation = true;
