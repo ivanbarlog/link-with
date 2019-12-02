@@ -1,7 +1,7 @@
 {
   "name": "link-with",
   "description": "Links the local package and install its dependencies.",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "homepage": "https://github.com/deftomat/link-with",
   "license": "MIT",
   "keywords": [

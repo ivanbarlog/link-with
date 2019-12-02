@@ -1,3 +1,7 @@
+# 0.1.4
+
+- fix: keep `package.json` formatting during revert
+
 # 0.1.3
 
 - fix: inform user that any package which needs to be compiled must be compiled by running any watch/build/etc. command
