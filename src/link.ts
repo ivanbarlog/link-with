@@ -86,14 +86,13 @@ function installPackages(packages: Package[], project: Project): Installation {
   };
 
   async function run(): Promise<InstallationResult> {
-    const originalProjectSpec = project.spec.get();
-    const cleanup = () => project.spec.set(originalProjectSpec);
+    const cleanup = () => project.spec.revert();
     cleanups.add(cleanup);
 
     try {
       const resolutions = copyPackagesToCache(packages, project);
 
-      const updatedProjectSpec = mergeDeepRight(originalProjectSpec, { resolutions });
+      const updatedProjectSpec = mergeDeepRight(project.spec.get(), { resolutions });
       project.spec.set(updatedProjectSpec);
 
       childProcess = execa('yarn', ['install', '--force', '--pure-lockfile', '--non-interactive']);
