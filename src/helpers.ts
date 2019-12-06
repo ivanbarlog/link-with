@@ -3,7 +3,7 @@ import { bold, yellow } from 'chalk';
 export function renderCompilationWarning(): void {
   console.info();
   renderWarnLine(70);
-  renderWarnLine(3, bold(`Make sure that your are using the latest code!`), 21);
+  renderWarnLine(3, bold(`Make sure your are using the latest code!`), 26);
   renderWarnLine(70);
   renderWarnLine(3, 'If any of your packages require to be compiled, please make sure', 3);
   renderWarnLine(3, `that you start any ${bold('yarn watch, yarn build, etc.')} command.`, 11);
