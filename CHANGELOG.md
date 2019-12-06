@@ -1,3 +1,7 @@
+# 0.1.5
+
+- various bugfixes
+
 # 0.1.4
 
 - fix: keep `package.json` formatting during revert
