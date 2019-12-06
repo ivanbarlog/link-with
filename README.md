@@ -9,7 +9,7 @@
 Unfortunately, build-in `link` command in `npm` and `yarn (v1)` will link your package without
 installing the transitive dependencies.
 
-On the other side, this tool will properly install the _linked_ package with all its dependencies and sync any future changes until it runs.
+On the other side, this tool will properly install the _linked_ package with all its dependencies and sync any future changes while it runs.
 
 Any changes to `package.json` in linked package will cause the reinstall,
 so your project will always be in sync.
