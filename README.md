@@ -20,6 +20,12 @@ Just run `link-with` in your project and pass paths to packages, which you want 
 
 **EXAMPLE:** `link-with ../my-dependency ../another-dependency`
 
+## Installation
+
+```
+$ yarn global add link-with
+```
+
 ## How it works
 
 Tool is watching `package.json` file in every linked package. On a start or when a change is detected, the following will happen:
