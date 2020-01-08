@@ -3,13 +3,13 @@
   "compilerOptions": {
     "declaration": true,
     "inlineSources": true,
-    "lib": ["es2018"],
+    "lib": ["ES2019"],
     "module": "commonjs",
     "outDir": "dist",
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "target": "es2018"
+    "target": "ES2019"
   },
   "exclude": ["node_modules", "dist"]
 }
