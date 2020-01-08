@@ -31,6 +31,7 @@ export async function link(packagePaths: string[], cwd: string) {
   installAndSync();
 
   async function installAndSync() {
+    /* eslint-disable require-atomic-updates */
     if (currentInstallation == null) {
       syncer.stop();
       if (firstInstallation === false) console.clear();
@@ -46,6 +47,7 @@ export async function link(packagePaths: string[], cwd: string) {
       currentInstallation = null;
       installAndSync();
     }
+    /* eslint-enable require-atomic-updates */
   }
 }
 
@@ -113,7 +115,7 @@ function installPackages(packages: Package[], project: Project): Installation {
 
       spinner.fail('Installation failed with the following error:');
       console.error(e.message);
-      console.log(
+      console.info(
         yellow.inverse(
           "Process will try to reinstall transitive dependencies on next change in linked package's manifest."
         )

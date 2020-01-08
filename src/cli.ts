@@ -6,7 +6,7 @@ import path from 'path';
 import { cleanups } from './cleanup';
 import { link } from './link';
 
-const version = require(`${__dirname}/../../package.json`).version;
+const { version } = require(`${__dirname}/../../package.json`); // eslint-disable-line @typescript-eslint/no-require-imports
 
 program.version(version).description('Links a local package into your project.');
 

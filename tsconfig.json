@@ -1,5 +1,5 @@
 {
-  "extends": "@deftomat/opinionated/tsconfig.json",
+  "extends": "@deftomat/opinionated/configs/tsconfig.json",
   "compilerOptions": {
     "declaration": true,
     "inlineSources": true,
