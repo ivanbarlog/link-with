@@ -1,3 +1,7 @@
+# 0.2.0
+
+- BREAKING: requires Node v12 or newer
+
 # 0.1.5
 
 - various bugfixes
