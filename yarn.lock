@@ -96,10 +96,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@deftomat/opinionated@0.5.6":
-  version "0.5.6"
-  resolved "https://npm.everlution.sk/@deftomat%2fopinionated/-/opinionated-0.5.6.tgz#a12079265e25b2bb9719efa19740cb785fcb9cfc"
-  integrity sha512-FK6twM5vNK2k/sOehNc6RXrOZDNc4Skfj1Arg7ZVT7a/trcvTkeM3G6DmaSGLzmaV14/i5EA8MrwE2YUy/UsRg==
+"@deftomat/opinionated@0.5.8":
+  version "0.5.8"
+  resolved "https://npm.everlution.sk/@deftomat%2fopinionated/-/opinionated-0.5.8.tgz#f9e562511088214fbba246b3dd9bb4f2339fad65"
+  integrity sha512-jmdjNM+6Cv4yNoVqS98Q4qV3W37zyxAsAe1LSWluDm+LfnPxYGvbzNkBnmUbOCvYrTCNi+M56KizSTxTT3Spcg==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^2.0.0"
     "@typescript-eslint/parser" "^2.0.0"
