@@ -19,10 +19,12 @@ program
     registerExitHandlers();
     try {
       const cwd = process.cwd();
-      const packagePaths = [packagePath, ...otherPackagePaths].map(packagePath => {
-        if (path.isAbsolute(packagePath)) return packagePath;
-        return path.resolve(`${cwd}/${packagePath}`);
-      });
+      const packagePaths = [packagePath, ...otherPackagePaths]
+        .map(packagePath => {
+          if (path.isAbsolute(packagePath)) return packagePath;
+          return path.resolve(`${cwd}/${packagePath}`);
+        })
+        .reduce((paths, path) => (paths.includes(path) ? paths : [...paths, path]), []);
 
       await link(packagePaths, process.cwd());
     } catch (e) {
