@@ -1,3 +1,7 @@
+# 0.2.1
+
+- fix: handle situation when user tries to link the same package multiple times
+
 # 0.2.0
 
 - BREAKING: requires Node v12 or newer
