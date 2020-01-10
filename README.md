@@ -30,11 +30,11 @@ $ yarn global add link-with
 
 Tool is watching `package.json` file in every linked package. On a start or when a change is detected, the following will happen:
 
-1. Copy package's source into cache folder. Omit any node_modules and git directories.
-2. Add/update `resolutions` property into project's `package.json` to point to cache folder.
-3. Run `yarn install` (will remove cache folder).
+1. Copy package's source into temporary folder. Omit any node_modules and git directories.
+2. Add/update `resolutions` property in project's `package.json` to point to temporary folder.
+3. Run `yarn install` (will remove temporary folder).
 4. Revert project's `package.json`.
-5. Watch & Sync package's files.
+5. Watch & sync package's files.
 
 This process makes sure that you always have all necessary dependencies and changes in place.
 
