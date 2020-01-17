@@ -1,3 +1,7 @@
+# 0.2.2
+
+- fix: ensure existing dependency in lock file
+
 # 0.2.1
 
 - fix: handle situation when user tries to link the same package multiple times
