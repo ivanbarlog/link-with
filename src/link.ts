@@ -2,6 +2,7 @@ import { bold, cyan, yellow } from 'chalk';
 import chokidar, { FSWatcher } from 'chokidar';
 import execa, { ExecaChildProcess } from 'execa';
 import fsExtra from 'fs-extra';
+import fs from 'fs';
 import ora from 'ora';
 import path from 'path';
 import { mergeDeepRight } from 'ramda';
@@ -53,19 +54,18 @@ export async function link(packagePaths: string[], cwd: string) {
 
 async function ensureDependencyOn(packages: Package[], project: Project) {
   const spinner = ora({ text: cyan('Checking project dependencies') }).start();
+  const lockFile = (await fs.promises.readFile(`${project.root}/yarn.lock`)).toString();
 
   try {
     await Promise.all(
-      packages.map(({ name }) =>
-        execa('yarn', ['why', name], { cwd: project.root }).then(({ stderr }) => {
-          if (stderr != null && stderr !== '') {
-            throw Error(
-              yellow(`${bold(name)} is not a project's dependency!\n`) +
-                `Please add this package as dependency and run ${bold('yarn install')}.`
-            );
-          }
-        })
-      )
+      packages.map(({ name }) => {
+        if (!lockFile.includes(name)) {
+          throw Error(
+            yellow(`${bold(name)} is not a project's dependency!\n`) +
+              `Please add this package as dependency and run ${bold('yarn install')}.`
+          );
+        }
+      })
     );
   } catch (e) {
     spinner.fail(e.message);
