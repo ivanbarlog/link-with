@@ -1,8 +1,8 @@
 import { bold, cyan, yellow } from 'chalk';
 import chokidar, { FSWatcher } from 'chokidar';
 import execa, { ExecaChildProcess } from 'execa';
-import fsExtra from 'fs-extra';
 import fs from 'fs';
+import fsExtra from 'fs-extra';
 import ora from 'ora';
 import path from 'path';
 import { mergeDeepRight } from 'ramda';
@@ -140,6 +140,17 @@ function createSyncer(packages: Package[], project: Project) {
     start() {
       if (watchers.length > 0) return;
 
+      let touchTimeout;
+      function touchYarnIntegrity() {
+        clearTimeout(touchTimeout);
+        touchTimeout = setTimeout(() => {
+          const now = Date.now();
+          // If any build tool is watching for changes in node_modules/.yarn-integrity
+          // then we want to trigger the rebuild.
+          fsExtra.utimes(`${project.root}/node_modules/.yarn-integrity`, now, now);
+        }, 300);
+      }
+
       watchers = packages.map(pkg =>
         chokidar
           .watch(pkg.root, { ignored: toWatchIgnoredPaths(pkg) })
@@ -153,22 +164,23 @@ function createSyncer(packages: Package[], project: Project) {
               case 'add':
               case 'change':
                 fsExtra.copy(eventPath, target).catch(console.error);
-                return;
+                break;
               case 'addDir':
                 fsExtra.ensureDir(target).catch(console.error);
-                return;
+                break;
               case 'unlink':
               case 'unlinkDir':
                 fsExtra.remove(target).catch(console.error);
-                return;
+                break;
               default:
                 throw Error('Unexpected FS event!');
             }
+            touchYarnIntegrity();
           })
       );
 
       markAsLinked(packages, project);
-      console.info('🚧  Keeping packages in sync...');
+      console.info('🚧 Keeping packages in sync...');
       renderCompilationWarning();
     },
     stop() {

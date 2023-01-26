@@ -2,8 +2,8 @@
 
 import { bold, yellow } from 'chalk';
 import program from 'commander';
-import path from 'path';
 import { cleanups } from './cleanup';
+import { collectConfig, selectPackages } from './config';
 import { link } from './link';
 
 const { version } = require(`${__dirname}/../../package.json`); // eslint-disable-line @typescript-eslint/no-require-imports
@@ -12,29 +12,24 @@ program.version(version).description('Links a local package into your project.')
 
 program
   .name('link-with')
-  .arguments('<packagePath> [otherPackagePaths...]')
-  .usage('<packagePath> [otherPackagePaths...]')
-  .description('Links the given packages into project.')
-  .action(async (packagePath, otherPackagePaths, cmd) => {
-    registerExitHandlers();
-    try {
-      const cwd = process.cwd();
-      const packagePaths = [packagePath, ...otherPackagePaths]
-        .map(packagePath => {
-          if (path.isAbsolute(packagePath)) return packagePath;
-          return path.resolve(`${cwd}/${packagePath}`);
-        })
-        .reduce((paths, path) => (paths.includes(path) ? paths : [...paths, path]), []);
-
-      await link(packagePaths, process.cwd());
-    } catch (e) {
-      console.error(e);
-      process.exit(1);
+  .description('Link local packages into current project.')
+  .option('-c, --config', 'Configure linker.')
+  .action(async cmd => {
+    if (cmd.config) {
+      collectConfig();
+    } else {
+      registerExitHandlers();
+      try {
+        const packagePaths = await selectPackages();
+        await link(packagePaths, process.cwd());
+      } catch (e) {
+        console.error(e);
+        process.exit(1);
+      }
     }
   });
 
 program.parse(process.argv);
-if (program.args.length === 0) program.outputHelp();
 
 function registerExitHandlers() {
   const cleanup = async () => {

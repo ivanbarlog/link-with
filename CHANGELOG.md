@@ -1,3 +1,8 @@
+# 0.3.0
+
+- feat: update `.yarn-integrity` file when source change
+- feat: autocomplete linkable packages
+
 # 0.2.2
 
 - fix: ensure existing dependency in lock file

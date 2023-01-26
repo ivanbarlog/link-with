@@ -14,17 +14,17 @@ This tool will properly install the _linked_ package with all its dependencies a
 Any changes to `package.json` in linked package will cause the reinstall,
 so your project will always be in sync.
 
-## Usage
-
-Just run `link-with` in your project and pass paths to packages, which you want to link.
-
-**EXAMPLE:** `link-with ../my-dependency ../another-dependency`
-
 ## Installation
 
 ```
 $ yarn global add link-with
 ```
+
+## Usage
+
+Just run `link-with` in your project and select the packages, which you want to link.
+
+> Linker needs to be configured first by running `link-with -c`
 
 ## How it works
 
