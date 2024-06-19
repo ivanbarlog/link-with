@@ -60,6 +60,8 @@ async function ensureDependencyOn(packages: Package[], project: Project) {
     await Promise.all(
       packages.map(({ name }) => {
         if (!lockFile.includes(name)) {
+          // TODO: Support missing dependencies.
+          // TODO: If dependency missing. Then add it as devDependency into project's package.json
           throw Error(
             yellow(`${bold(name)} is not a project's dependency!\n`) +
               `Please add this package as dependency and run ${bold('yarn install')}.`

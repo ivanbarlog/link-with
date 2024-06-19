@@ -1,3 +1,7 @@
+# 0.4.0
+
+- feat: support non-workspace packages
+
 # 0.3.0
 
 - feat: update `.yarn-integrity` file when source change
