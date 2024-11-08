@@ -6,6 +6,10 @@
 - chore: upgrade dependencies
 - BREAKING: requires Node v18 or newer
 
+# 0.4.0
+
+- feat: support non-workspace packages
+
 # 0.3.0
 
 - feat: update `.yarn-integrity` file when source change

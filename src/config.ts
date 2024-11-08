@@ -87,23 +87,35 @@ export async function selectPackages(): Promise<string[]> {
 
 async function findAllPackages(packagesRoots: string[]) {
   const packages = await Promise.all(
-    packagesRoots.flatMap(root =>
-      readdirSync(root).map(async name => {
-        const pkgRoot = `${root}/${name}`;
+    packagesRoots.map(async root => {
+      // Scan all top level directories in the root.
+      const subpackages = await Promise.all(
+        readdirSync(root).map(name => tryRoot(`${root}/${name}`))
+      );
 
+      const nonNilSubpackages = subpackages.filter(isNotNil);
+      if (nonNilSubpackages.length > 0) {
+        return nonNilSubpackages;
+      }
+
+      // If no packages found in the root, try the root itself as a package.
+      const p = await tryRoot(root);
+      return p ? [p] : [];
+
+      async function tryRoot(root: string) {
         try {
-          const manifest = await readJson(`${pkgRoot}/package.json`);
+          const manifest = await readJson(`${root}/package.json`);
 
-          return { name: manifest.name, root: pkgRoot };
+          return { name: manifest.name, root };
         } catch (e) {
           if (e.code === 'ENOENT' || e.code === 'ENOTDIR') return;
           throw e;
         }
-      })
-    )
+      }
+    })
   );
 
-  return packages.filter(isNotNil).sort((a, b) => a.name.localeCompare(b.name));
+  return packages.flat().sort((a, b) => a.name.localeCompare(b.name));
 }
 
 function includesParts(query: string, string: string): boolean {
